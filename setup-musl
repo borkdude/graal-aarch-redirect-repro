@@ -34,9 +34,6 @@ echo "c3e5e9fdd5004dcb542feda5ee4f0ff0744628baf8ed2dd5d66f8ca1197cb1a1 zlib-${ZL
     sha256sum --check
 tar xf "zlib-${ZLIB_VERSION}.tar.gz"
 
-arch=${BABASHKA_ARCH:-"x86_64"}
-echo "ARCH: $arch"
-
 cd "zlib-${ZLIB_VERSION}"
 CC=musl-gcc ./configure --static --prefix="/usr/local"
 make CC=musl-gcc
@@ -44,4 +41,4 @@ make install
 cd ..
 
 # Install libz.a in the correct place so ldd can find it
-install -Dm644 "/usr/local/lib/libz.a" "/usr/lib/$arch-linux-musl/libz.a"
+install -Dm644 "/usr/local/lib/libz.a" "/usr/lib/aarch64-linux-musl/libz.a"
