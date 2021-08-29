@@ -19,6 +19,10 @@ args=("-H:Name=redirect"
       "--native-image-info"
       "Redirect")
 
+if [ "$REDIRECT_REPRO_MUSL" = "true" ]; then
+    args+=("--static" "--libc=musl")
+fi
+
 "$GRAALVM_HOME/bin/gu" install native-image
 
 "$GRAALVM_HOME/bin/native-image" "${args[@]}"
