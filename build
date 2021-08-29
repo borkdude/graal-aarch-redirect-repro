@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+if [ -z "$GRAALVM_HOME" ]; then
+    echo "Please set GRAALVM_HOME"
+    exit 1
+fi
+
+export JAVA_HOME=$GRAALVM_HOME
+export PATH=$GRAALVM_HOME/bin:$PATH
+
+javac Redirect.java
+
+java Redirect
+
+args=("-H:Name=redirect"
+      "-H:+ReportExceptionStackTraces"
+      "--verbose"
+      "--no-fallback"
+      "--native-image-info"
+      "Redirect")
+
+"$GRAALVM_HOME/bin/gu" install native-image
+
+"$GRAALVM_HOME/bin/native-image" "${args[@]}"
+
+./redirect
