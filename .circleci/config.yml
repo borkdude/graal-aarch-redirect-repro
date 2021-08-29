@@ -88,7 +88,6 @@ jobs:
           command: |
             sudo apt-get update
             sudo apt-get -y install gcc g++ zlib1g-dev
-            sudo -E ./setup-musl
       - run:
           name: Download GraalVM
           command: |
@@ -100,7 +99,7 @@ jobs:
       - run:
           name: Build binary
           command: |
-            REDIRECT_REPRO_MUSL=true ./build
+            REDIRECT_REPRO_STATIC=true ./build
   # mac:
   #   macos:
   #     xcode: "12.0.0"
