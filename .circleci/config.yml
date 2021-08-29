@@ -210,4 +210,4 @@ workflows:
     jobs:
       - linux
       - linux-aarch64
-#      - linux-aarch64-static
+      - linux-aarch64-static
